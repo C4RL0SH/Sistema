@@ -1,6 +1,6 @@
 package DAO;
 
-import model.ModelVendaProdutodos;
+import model.ModelVendaProduto;
 import connection.ConexaoMySql;
 import java.util.ArrayList;
 /**
@@ -14,7 +14,7 @@ public class DAOVendaProdutodos extends ConexaoMySql {
     * @param pModelVendaProdutodos
     * @return int
     */
-    public int salvarVendaProdutodosDAO(ModelVendaProdutodos pModelVendaProdutodos){
+    public int salvarVendaProdutodosDAO(ModelVendaProduto pModelVendaProdutodos){
         try {
             this.conectar();
             return this.insertSQL(
@@ -43,8 +43,8 @@ public class DAOVendaProdutodos extends ConexaoMySql {
     * @param pIdVenProduto 
     * @return ModelVendaProdutodos
     */
-    public ModelVendaProdutodos getVendaProdutodosDAO(int pIdVenProduto ){
-        ModelVendaProdutodos modelVendaProdutodos = new ModelVendaProdutodos();
+    public ModelVendaProduto getVendaProdutodosDAO(int pIdVenProduto ){
+        ModelVendaProduto modelVendaProdutodos = new ModelVendaProduto();
         try {
             this.conectar();
             this.executarSQL(
@@ -80,9 +80,9 @@ public class DAOVendaProdutodos extends ConexaoMySql {
     * recupera uma lista de VendaProdutodos
         * @return ArrayList
     */
-    public ArrayList<ModelVendaProdutodos> getListaVendaProdutodosDAO(){
-        ArrayList<ModelVendaProdutodos> listamodelVendaProdutodos = new ArrayList();
-        ModelVendaProdutodos modelVendaProdutodos = new ModelVendaProdutodos();
+    public ArrayList<ModelVendaProduto> getListaVendaProdutodosDAO(){
+        ArrayList<ModelVendaProduto> listamodelVendaProdutodos = new ArrayList();
+        ModelVendaProduto modelVendaProdutodos = new ModelVendaProduto();
         try {
             this.conectar();
             this.executarSQL(
@@ -98,7 +98,7 @@ public class DAOVendaProdutodos extends ConexaoMySql {
             );
 
             while(this.getResultSet().next()){
-                modelVendaProdutodos = new ModelVendaProdutodos();
+                modelVendaProdutodos = new ModelVendaProduto();
                 modelVendaProdutodos.setIdVenProduto (this.getResultSet().getInt(1));
                 modelVendaProdutodos.setProduto (this.getResultSet().getInt(2));
                 modelVendaProdutodos.setVendas(this.getResultSet().getInt(3));
@@ -119,7 +119,7 @@ public class DAOVendaProdutodos extends ConexaoMySql {
     * @param pModelVendaProdutodos
     * @return boolean
     */
-    public boolean atualizarVendaProdutodosDAO(ModelVendaProdutodos pModelVendaProdutodos){
+    public boolean atualizarVendaProdutodosDAO(ModelVendaProduto pModelVendaProdutodos){
         try {
             this.conectar();
             return this.executarUpdateDeleteSQL(

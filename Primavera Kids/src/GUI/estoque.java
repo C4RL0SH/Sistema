@@ -72,7 +72,6 @@ public class estoque extends javax.swing.JInternalFrame {
 
         jLabel6 = new javax.swing.JLabel();
         pesq = new javax.swing.JTextField();
-        pesquisa = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -97,16 +96,6 @@ public class estoque extends javax.swing.JInternalFrame {
         pesq.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 pesqKeyReleased(evt);
-            }
-        });
-
-        pesquisa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/zoom.png"))); // NOI18N
-        pesquisa.setText("Pesquisar");
-        pesquisa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        pesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisaActionPerformed(evt);
             }
         });
 
@@ -163,10 +152,8 @@ public class estoque extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pesq, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                        .addComponent(pesq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -175,10 +162,9 @@ public class estoque extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
 
@@ -188,14 +174,6 @@ public class estoque extends javax.swing.JInternalFrame {
     private void pesqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesqActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pesqActionPerformed
-
-    private void pesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        TableRowSorter<DefaultTableModel> mode1 = new TableRowSorter<>(modelo);
-        jTable1.setRowSorter(mode1);
-        mode1.setRowFilter(RowFilter.regexFilter(pesq.getText()));
-
-    }//GEN-LAST:event_pesquisaActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
        
@@ -218,6 +196,5 @@ DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField pesq;
-    private javax.swing.JButton pesquisa;
     // End of variables declaration//GEN-END:variables
 }

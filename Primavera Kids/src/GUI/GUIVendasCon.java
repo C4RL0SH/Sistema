@@ -4,13 +4,23 @@
  */
 package GUI;
 
+import controller.ControllerVendas;
 import java.awt.Color;
+import java.util.ArrayList;
+import model.ModelVendasCliente;
+import controller.ControllerVendasCliente;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Carlos
  */
 public class GUIVendasCon extends javax.swing.JInternalFrame {
+
+    ArrayList<ModelVendasCliente> listaModeVendasCliente = new ArrayList<>();
+    ControllerVendasCliente controllerVendasCliente = new ControllerVendasCliente();
+    ControllerVendas controllerVendas = new ControllerVendas();
 
     /**
      * Creates new form GUIVendasCon
@@ -19,6 +29,8 @@ public class GUIVendasCon extends javax.swing.JInternalFrame {
         initComponents();
         Color minhaCor = new Color(255, 242, 190);
         getContentPane().setBackground(minhaCor);
+
+        carregarVendas();
     }
 
     /**
@@ -32,19 +44,24 @@ public class GUIVendasCon extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        exc = new javax.swing.JButton();
+        alt = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("Pesquisar:");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Excluir");
+        exc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        exc.setText("Excluir");
+        exc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Alterar");
+        alt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        alt.setText("Alterar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,9 +91,9 @@ public class GUIVendasCon extends javax.swing.JInternalFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(exc)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))
+                                .addComponent(alt)))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
@@ -90,18 +107,43 @@ public class GUIVendasCon extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(exc)
+                    .addComponent(alt))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void excActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excActionPerformed
+        int linha = jTable1.getSelectedRow();
+        int codigo = (int) jTable1.getValueAt(linha, 0);
+        if (controllerVendas.excluirVendasController(codigo)) {
+            JOptionPane.showMessageDialog(this, "Venda excluida com sucesso!","Atenção",JOptionPane.WARNING_MESSAGE);
+            carregarVendas();
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao excluir a venda","Erro",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_excActionPerformed
+
+    private void carregarVendas() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        listaModeVendasCliente = controllerVendasCliente.getListaVendasClienteController();
+        int cont = listaModeVendasCliente.size();
+        for (int i = 0; i < cont; i++) {
+            modelo.addRow(new Object[]{
+                listaModeVendasCliente.get(i).getModelVendas().getIdVendas(),
+                listaModeVendasCliente.get(i).getModelCliente().getClienNome(),
+                listaModeVendasCliente.get(i).getModelVendas().getVenData()
+            });
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton alt;
+    private javax.swing.JButton exc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

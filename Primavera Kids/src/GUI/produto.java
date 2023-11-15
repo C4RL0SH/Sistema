@@ -175,7 +175,7 @@ public class produto extends javax.swing.JInternalFrame {
         setTitle("Produto");
         setToolTipText("");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/cart.png"))); // NOI18N
-        setMinimumSize(new java.awt.Dimension(1069, 844));
+        setMinimumSize(new java.awt.Dimension(100, 100));
 
         nome.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         nome.setPreferredSize(new java.awt.Dimension(150, 25));

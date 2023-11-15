@@ -183,20 +183,20 @@ public class Login extends javax.swing.JFrame {
 
                             String cargo = rs.getString("func_Cargo");
                             if (cargo.equals("Gerente")) {
-                                Menu.lblusuario.setText(rs.getString(18));
+                                Menu.lblusuario.setText(rs.getString(2));
                                 this.dispose();
                             } else if (cargo.equals("Caixa")) {
                                 Menu.Estoque.setVisible(false);
                                 Menu.Funcionario.setVisible(false);
                                 Menu.Produto.setVisible(false);
-                                Menu.lblusuario.setText(rs.getString(18));
+                                Menu.lblusuario.setText(rs.getString(2));
                                 this.dispose();
                             } else if (cargo.equals("Estoquista")) {
                                 Menu.cli.setVisible(false);
                                 Menu.Produto.setVisible(false);
                                 Menu.Funcionario.setVisible(false);
                                 Menu.venda.setVisible(false);
-                                Menu.lblusuario.setText(rs.getString(18));
+                                Menu.lblusuario.setText(rs.getString(2));
                                 this.dispose();
                             }
                         } else if (situacao.equals("Demitido")) {

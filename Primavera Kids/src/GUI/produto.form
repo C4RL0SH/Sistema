@@ -20,7 +20,7 @@
       <Image iconType="3" name="/Imagem/cart.png"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1069, 844]"/>
+      <Dimension value="[100, 100]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
