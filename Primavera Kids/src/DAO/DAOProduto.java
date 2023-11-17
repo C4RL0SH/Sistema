@@ -25,8 +25,7 @@ public class DAOProduto extends ConexaoMySql {
                     + "prod_Categoria,"
                     + "prod_Quantidade,"
                     + "prod_Tamanho,"
-                    + "prod_Preco,"
-                    + "prod_PrecCompra,"
+                    + "prod_Preco,"                    
                     + "prod_Desconto"
                 + ") VALUES ("                      
                     + "'" + pModelProduto.getProdNome() + "',"
@@ -35,8 +34,7 @@ public class DAOProduto extends ConexaoMySql {
                     + "'" + pModelProduto.getProdCategoria() + "',"
                     + "'" + pModelProduto.getProdQuantidade() + "',"
                     + "'" + pModelProduto.getProdTamanho() + "',"
-                    + "'" + pModelProduto.getProdPreco() + "',"
-                    + "'" + pModelProduto.getProdPrecCompra() + "',"
+                    + "'" + pModelProduto.getProdPreco() + "',"                    
                     + "'" + pModelProduto.getProd_Desconto() + "'"
                 + ");"
             );
@@ -67,7 +65,6 @@ public class DAOProduto extends ConexaoMySql {
                     + "prod_Quantidade,"
                     + "prod_Tamanho,"
                     + "prod_Preco,"
-                    + "prod_PrecCompra,"
                     + "prod_Desconto"
                  + " FROM"
                      + " tbl_produto"
@@ -85,8 +82,7 @@ public class DAOProduto extends ConexaoMySql {
                 modelProduto.setProdQuantidade(this.getResultSet().getInt(6));
                 modelProduto.setProdTamanho(this.getResultSet().getString(7));
                 modelProduto.setProdPreco(this.getResultSet().getDouble(8));
-                modelProduto.setProdPrecCompra(this.getResultSet().getDouble(9));
-                modelProduto.setProd_Desconto(this.getResultSet().getInt(10));
+                modelProduto.setProd_Desconto(this.getResultSet().getInt(9));
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -115,7 +111,6 @@ public class DAOProduto extends ConexaoMySql {
                     + "prod_Quantidade,"
                     + "prod_Tamanho,"
                     + "prod_Preco,"
-                    + "prod_PrecCompra,"
                     + "prod_Desconto"
                  + " FROM"
                      + " tbl_produto"
@@ -132,8 +127,7 @@ public class DAOProduto extends ConexaoMySql {
                 modelProduto.setProdQuantidade(this.getResultSet().getInt(6));
                 modelProduto.setProdTamanho(this.getResultSet().getString(7));
                 modelProduto.setProdPreco(this.getResultSet().getDouble(8));
-                modelProduto.setProdPrecCompra(this.getResultSet().getDouble(9));
-                modelProduto.setProd_Desconto(this.getResultSet().getInt(10));
+                modelProduto.setProd_Desconto(this.getResultSet().getInt(9));
                 listamodelProduto.add(modelProduto);
             }
         }catch(Exception e){
@@ -161,7 +155,6 @@ public class DAOProduto extends ConexaoMySql {
                     + "prod_Quantidade = '" + pModelProduto.getProdQuantidade() + "',"
                     + "prod_Tamanho = '" + pModelProduto.getProdTamanho() + "',"
                     + "prod_Preco = '" + pModelProduto.getProdPreco() + "',"
-                    + "prod_PrecCompra = '" + pModelProduto.getProdPrecCompra() + "',"
                     + "prod_Desconto = '" + pModelProduto.getProd_Desconto() + "'"
                 + " WHERE "
                     + "id_Produto = '" + pModelProduto.getIdProduto () + "'"

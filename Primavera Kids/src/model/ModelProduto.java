@@ -14,8 +14,7 @@ public class ModelProduto {
     private String prodCategoria;
     private int prodQuantidade;
     private String prodTamanho;
-    private double prodPreco;
-    private double prodPrecCompra;
+    private double prodPreco;    
     private int prod_Desconto;
 
     /**
@@ -133,21 +132,7 @@ public class ModelProduto {
     */
     public double getProdPreco(){
         return this.prodPreco;
-    }
-
-    /**
-    * seta o valor de prodPrecCompra
-    * @param pProdPrecCompra
-    */
-    public void setProdPrecCompra(double pProdPrecCompra){
-        this.prodPrecCompra = pProdPrecCompra;
-    }
-    /**
-    * @return prodPrecCompra
-    */
-    public double getProdPrecCompra(){
-        return this.prodPrecCompra;
-    }
+    }    
 
     /**
     * seta o valor de prod_Desconto
@@ -165,6 +150,6 @@ public class ModelProduto {
 
     @Override
     public String toString(){
-        return "ModelProduto {" + "::idProduto  = " + this.idProduto  + "::prodNome = " + this.prodNome + "::prodNomeFornec = " + this.prodNomeFornec + "::prodDataRegistro = " + this.prodDataRegistro + "::prodCategoria = " + this.prodCategoria + "::prodQuantidade = " + this.prodQuantidade + "::prodTamanho = " + this.prodTamanho + "::prodPreco = " + this.prodPreco + "::prodPrecCompra = " + this.prodPrecCompra + "::prod_Desconto = " + this.prod_Desconto +  "}";
+        return "ModelProduto {" + "::idProduto  = " + this.idProduto  + "::prodNome = " + this.prodNome + "::prodNomeFornec = " + this.prodNomeFornec + "::prodDataRegistro = " + this.prodDataRegistro + "::prodCategoria = " + this.prodCategoria + "::prodQuantidade = " + this.prodQuantidade + "::prodTamanho = " + this.prodTamanho + "::prodPreco = " + this.prodPreco + "::prod_Desconto = " + this.prod_Desconto +  "}";
     }
 }

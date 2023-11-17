@@ -26,7 +26,7 @@ public class DAOVendasCliente extends ConexaoMySql{
                 "SELECT *"
                         + " FROM "
                         + "vendas INNER JOIN tbl_cliente"
-                        + " ON tbl_cliente.id_clien = vendas.fk_cliente"
+                        + " ON tbl_cliente.id_clien = vendas.cpf_cliente"
             );
 
             while(this.getResultSet().next()){
@@ -34,11 +34,13 @@ public class DAOVendasCliente extends ConexaoMySql{
                 modelCliente = new ModelCliente();
                 modelVendasCliente = new ModelVendasCliente();
                 modelVendas.setIdVendas(this.getResultSet().getInt(1));
-                modelVendas.setCliente(this.getResultSet().getInt(2));
+                modelVendas.setCliente(this.getResultSet().getString(2));
                 modelVendas.setVenData(this.getResultSet().getDate(3));
                 modelVendas.setVenValorLiquido(this.getResultSet().getDouble(4));
                 modelVendas.setVenValorBruto(this.getResultSet().getDouble(5));
-                modelVendas.setVenDesconto(this.getResultSet().getDouble(6));
+                modelVendas.setVenDesconto(this.getResultSet().getInt(6));
+                modelVendas.setVenTroco(this.getResultSet().getDouble(7));
+                modelVendas.setVenTipoPagamento(this.getResultSet().getString(8));
                 
                 modelCliente.setIdClien(this.getResultSet().getInt(1));
                 modelCliente.setClienNome(this.getResultSet().getString(2));

@@ -1,7 +1,7 @@
 package controller;
 
 import model.ModelVendaProduto;
-import DAO.DAOVendaProdutodos;
+import DAO.DAOVendaProduto;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 */
 public class ControllerVendaProduto {
 
-    private DAOVendaProdutodos daoVendaProdutodos = new DAOVendaProdutodos();
+    private DAOVendaProduto daoVendaProdutodos = new DAOVendaProduto();
 
     /**
     * grava VendaProdutodos
@@ -55,5 +55,9 @@ public class ControllerVendaProduto {
     */
     public boolean excluirVendaProdutodosController(int pIdVenProduto ){
         return this.daoVendaProdutodos.excluirVendaProdutodosDAO(pIdVenProduto );
+    }
+
+    public boolean salvarVendaProdutodosController(ArrayList<ModelVendaProduto> pListamodelVendaProduto) {
+        return this.daoVendaProdutodos.salvarVendaProdutodosDAO(pListamodelVendaProduto);
     }
 }

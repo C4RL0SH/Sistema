@@ -52,7 +52,6 @@ public class estoque extends javax.swing.JInternalFrame {
                 listaModelProduto.get(i).getProdTamanho(),
                 listaModelProduto.get(i).getProdDataRegistro(),
                 listaModelProduto.get(i).getProdPreco(),
-                listaModelProduto.get(i).getProdPrecCompra(),
                 listaModelProduto.get(i).getProd_Desconto(),
                 listaModelProduto.get(i).getProdQuantidade()
 
@@ -105,11 +104,11 @@ public class estoque extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Fornecedor", "Categoria", "Tamanho", "Registro", "Preço do Produto", "Preço de Compra", "Desconto", "Quantidade"
+                "Código", "Nome", "Fornecedor", "Categoria", "Tamanho", "Registro", "Preço", "Desconto", "Quantidade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

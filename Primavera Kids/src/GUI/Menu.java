@@ -61,6 +61,7 @@ public class Menu extends javax.swing.JFrame {
         Produto = new javax.swing.JMenu();
         venda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         Descon = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -170,6 +171,14 @@ public class Menu extends javax.swing.JFrame {
         });
         venda.add(jMenuItem1);
 
+        jMenuItem2.setText("Relatório");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        venda.add(jMenuItem2);
+
         jMenuBar1.add(venda);
 
         Descon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/door_out.png"))); // NOI18N
@@ -215,46 +224,28 @@ public class Menu extends javax.swing.JFrame {
        funcionario f = new funcionario();
        Menu.add(f);
        f.setVisible(true);
-        f.show();
-        try {
-        f.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-        }
+        
     }//GEN-LAST:event_FuncionarioMouseClicked
 
     private void cliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cliMouseClicked
     cliente c = new cliente();
     Menu.add(c);
     c.setVisible(true);
-    c.show();
-    try{
-    c.setMaximum(true);
-    } catch (PropertyVetoException ex){
-    }
+    
     }//GEN-LAST:event_cliMouseClicked
 
     private void EstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EstoqueMouseClicked
        estoque e = new estoque();
         Menu.add(e);
         e.setVisible(true);
-        e.show();
-        try {
-            e.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            
-        }
+        
     }//GEN-LAST:event_EstoqueMouseClicked
 
     private void ProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProdutoMouseClicked
         produto p = new produto();
         Menu.add(p);
         p.setVisible(true);
-        p.show();
-        try {
-            p.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            
-        }
+        
     }//GEN-LAST:event_ProdutoMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -276,12 +267,14 @@ public class Menu extends javax.swing.JFrame {
         GUIVendas v = new GUIVendas();
         Menu.add(v);
         v.setVisible(true);
-        v.show();
-        try {
-            v.setMaximum(true);
-        } catch (PropertyVetoException ex) {            
-        }
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        GUIVendasCon vc = new GUIVendasCon();
+        Menu.add(vc);
+        vc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +322,7 @@ public class Menu extends javax.swing.JFrame {
     public static javax.swing.JMenu cli;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbldata;
     private javax.swing.JLabel lblhora;

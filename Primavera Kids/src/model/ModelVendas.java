@@ -9,11 +9,13 @@ import java.util.Date;
 public class ModelVendas {
 
     private int idVendas;
-    private int cliente;
+    private String cliente;
     private Date venData;
     private double venValorLiquido;
     private double venValorBruto;
-    private double venDesconto;
+    private int venDesconto;
+    private double venTroco;
+    private String venTipoPagamento;
 
     /**
     * Construtor
@@ -38,13 +40,13 @@ public class ModelVendas {
     * seta o valor de cliente
     * @param pCliente
     */
-    public void setCliente(int pCliente){
+    public void setCliente(String pCliente){
         this.cliente = pCliente;
     }
     /**
     * @return fk_cliente
     */
-    public int getCliente(){
+    public String getCliente(){
         return this.cliente;
     }
 
@@ -94,7 +96,7 @@ public class ModelVendas {
     * seta o valor de venDesconto
     * @param pVenDesconto
     */
-    public void setVenDesconto(double pVenDesconto){
+    public void setVenDesconto(int pVenDesconto){
         this.venDesconto = pVenDesconto;
     }
     /**
@@ -103,9 +105,36 @@ public class ModelVendas {
     public double getVenDesconto(){
         return this.venDesconto;
     }
+     /**
+    * seta o valor de venTroco
+    * @param pVenTroco
+    */
+    public void setVenTroco(double pVenTroco){
+        this.venTroco = pVenTroco;
+    }
+    /**
+    * @return venTroco
+    */
+    public double getVenTroco(){
+        return this.venTroco;
+    }
+    
+    /**
+    * seta o valor de Tipo de Pagamento
+    * @param pVenTipoPagamento
+    */
+    public void setVenTipoPagamento(String pVenTipoPagamento){
+        this.venTipoPagamento = pVenTipoPagamento;
+    }
+    /**
+    * @return venTipoPagamento
+    */
+    public String getVenTipoPagamento(){
+        return this.venTipoPagamento;
+    }
 
     @Override
     public String toString(){
-        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto +  "}";
+        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto + "::venTroco = " + this.venTroco + "::venTipoPagamento = " + this.venTipoPagamento +"}";
     }
 }

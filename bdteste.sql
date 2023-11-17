@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/11/2023 às 02:06
+-- Tempo de geração: 17/11/2023 às 06:20
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -135,12 +135,22 @@ INSERT INTO `tbl_produto` (`id_Produto`, `prod_Nome`, `prod_NomeFornec`, `prod_D
 
 CREATE TABLE `vendas` (
   `id_vendas` bigint(20) UNSIGNED NOT NULL,
-  `fk_cliente` bigint(20) UNSIGNED NOT NULL,
+  `cpf_cliente` varchar(20) NOT NULL,
   `ven_data` date NOT NULL,
   `ven_valor_liquido` double NOT NULL,
   `ven_valor_bruto` double NOT NULL,
-  `ven_desconto` double NOT NULL
+  `ven_Troco` double NOT NULL,
+  `ven_TipoPagamento` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `vendas`
+--
+
+INSERT INTO `vendas` (`id_vendas`, `cpf_cliente`, `ven_data`, `ven_valor_liquido`, `ven_valor_bruto`, `ven_Troco`, `ven_TipoPagamento`) VALUES
+(1, '730.755.310-46', '2023-11-17', 159.9, 319.8, 80.19999999999999, 'Dinheiro'),
+(2, '730.755.310-46', '2023-11-17', 36.485, 72.97, 27.03, 'Dinheiro'),
+(3, '730.755.310-46', '2023-11-17', 536.485, 1072.97, 1927.03, 'Dinheiro');
 
 -- --------------------------------------------------------
 
@@ -155,6 +165,26 @@ CREATE TABLE `venda_produto` (
   `ven_pro_valor` double NOT NULL,
   `ven_pro_quant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `venda_produto`
+--
+
+INSERT INTO `venda_produto` (`id_ven_produto`, `fk_produto`, `fk_vendas`, `ven_pro_valor`, `ven_pro_quant`) VALUES
+(1, 2, 2, 10, 4),
+(2, 3, 2, 10, 4),
+(3, 2, 3, 10, 4),
+(4, 3, 3, 10, 4),
+(5, 3, 3, 10, 4),
+(6, 3, 3, 10, 4),
+(7, 3, 3, 10, 4),
+(8, 3, 3, 10, 4),
+(9, 3, 3, 10, 4),
+(10, 3, 3, 10, 4),
+(11, 3, 3, 10, 4),
+(12, 3, 3, 10, 4),
+(13, 3, 3, 10, 4),
+(14, 3, 3, 10, 4);
 
 --
 -- Índices para tabelas despejadas
@@ -189,7 +219,7 @@ ALTER TABLE `tbl_produto`
 --
 ALTER TABLE `vendas`
   ADD PRIMARY KEY (`id_vendas`),
-  ADD KEY `fkcliente` (`fk_cliente`);
+  ADD KEY `fkcliente` (`cpf_cliente`);
 
 --
 -- Índices de tabela `venda_produto`
@@ -231,23 +261,17 @@ ALTER TABLE `tbl_produto`
 -- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `venda_produto`
 --
 ALTER TABLE `venda_produto`
-  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restrições para tabelas despejadas
 --
-
---
--- Restrições para tabelas `vendas`
---
-ALTER TABLE `vendas`
-  ADD CONSTRAINT `vendas_ibfk_1` FOREIGN KEY (`fk_cliente`) REFERENCES `tbl_cliente` (`id_clien`);
 
 --
 -- Restrições para tabelas `venda_produto`
