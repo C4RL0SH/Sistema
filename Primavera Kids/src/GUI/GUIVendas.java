@@ -19,7 +19,6 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Carlos
@@ -434,109 +433,107 @@ public class GUIVendas extends javax.swing.JInternalFrame {
             VTotal.setText("");
         } else {
             quantidade = Double.parseDouble(quant.getText());
-    double precoOriginal = Double.parseDouble(Preco.getText());
-    // Aplica desconto se existir
-    double desconto = modelProduto.getProd_Desconto();
-    double precoComDesconto = precoOriginal;
+            double precoOriginal = Double.parseDouble(Preco.getText());
+            // Aplica desconto se existir
+            double desconto = modelProduto.getProd_Desconto();
+            double precoComDesconto = precoOriginal;
 
-    if (desconto > 0) {
-        precoComDesconto -= (precoOriginal * (desconto / 100.0));
-    }
+            if (desconto > 0) {
+                precoComDesconto -= (precoOriginal * (desconto / 100.0));
+            }
 
-    double resultado = quantidade * precoComDesconto;
-    DecimalFormat formato = new DecimalFormat("#.##");
-    String resultadoFormatado = formato.format(resultado);
-    VTotal.setText(String.valueOf(resultadoFormatado));
+            double resultado = quantidade * precoComDesconto;
+            DecimalFormat formato = new DecimalFormat("#.##");
+            String resultadoFormatado = formato.format(resultado);
+            VTotal.setText(String.valueOf(resultadoFormatado));
         }
     }//GEN-LAST:event_quantKeyPressed
 
     private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
-      limparCampos();
+        limparCampos();
     }//GEN-LAST:event_novoActionPerformed
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
-        int codigovenda =0;
+        int codigovenda = 0;
         listamodelVendaProduto = new ArrayList<>();
         modelVendas.setCliente(cpfCli.getText());
-        Date dataHoraAtual = new Date();    
-    String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-    java.sql.Date dataSql = java.sql.Date.valueOf(LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        Date dataHoraAtual = new Date();
+        String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+        java.sql.Date dataSql = java.sql.Date.valueOf(LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         modelVendas.setVenData(dataSql);
         modelVendas.setVenValorBruto(Double.parseDouble(TotalVenda.getText()));
         double valorBruto = Double.parseDouble(TotalVenda.getText());
         String desco = desc.getText();
-        String numerosApenas = desco.replaceAll("[^0-9.]", ""); 
+        String numerosApenas = desco.replaceAll("[^0-9.]", "");
         double desconto = Double.parseDouble(numerosApenas);
         double valorLiquido = valorBruto * (1 - (desconto / 100.0));
         modelVendas.setVenValorLiquido(valorLiquido);
-        try {    
-    String trocoTexto = Troco.getText();
-    trocoTexto = trocoTexto.replace(',', '.');
-    double troco = Double.parseDouble(trocoTexto);
-    modelVendas.setVenTroco(troco);
-} catch (NumberFormatException e) {
-    // Trate o caso em que a conversão para Double não é possível
-    e.printStackTrace(); // ou outra forma de lidar com o erro
-}
+        try {
+            String trocoTexto = Troco.getText();
+            trocoTexto = trocoTexto.replace(',', '.');
+            double troco = Double.parseDouble(trocoTexto);
+            modelVendas.setVenTroco(troco);
+        } catch (NumberFormatException e) {
+            // Trate o caso em que a conversão para Double não é possível
+            e.printStackTrace(); // ou outra forma de lidar com o erro
+        }
         modelVendas.setVenTipoPagamento(pagamento.getSelectedItem().toString());
-        
+
         codigovenda = controllerVendas.salvarVendasController(modelVendas);
-        if(codigovenda > 0){
-        JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!","Atenção", JOptionPane.WARNING_MESSAGE);        
-        }else{
-        JOptionPane.showMessageDialog(this, "Ocorreu um erro na venda!!","Error", JOptionPane.ERROR_MESSAGE);        
+        if (codigovenda > 0) {            
+        } else {            
         }
-        int cont = jTable1.getRowCount(); 
+        int cont = jTable1.getRowCount();
         for (int i = 0; i < cont; i++) {
-           modelVendaProduto = new ModelVendaProduto();
-           modelVendaProduto.setProduto((int)jTable1.getValueAt(i, 0));
-           modelVendaProduto.setVendas(codigovenda);
-           modelVendaProduto.setVenProValor((double)jTable1.getValueAt(i, 3));
-           modelVendaProduto.setVenProQuant(Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
-           listamodelVendaProduto.add(modelVendaProduto);
+            modelVendaProduto = new ModelVendaProduto();
+            modelVendaProduto.setProduto((int) jTable1.getValueAt(i, 0));
+            modelVendaProduto.setVendas(codigovenda);
+            modelVendaProduto.setVenProValor((double) jTable1.getValueAt(i, 3));
+            modelVendaProduto.setVenProQuant(Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
+            listamodelVendaProduto.add(modelVendaProduto);
         }
-        if(controllerVendaProduto.salvarVendaProdutodosController(listamodelVendaProduto)){
-            JOptionPane.showMessageDialog(this, "Produtos da venda salvo com sucesso!!","Atenção", JOptionPane.WARNING_MESSAGE); 
-        limparCampos();
-        }else{
-            JOptionPane.showMessageDialog(this, "Ocorreu um erro!!","Error", JOptionPane.ERROR_MESSAGE);
+        if (controllerVendaProduto.salvarVendaProdutodosController(listamodelVendaProduto)) {
+            JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            limparCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro na venda!!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void pagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagamentoActionPerformed
-      String formaDePagamentoSelecionada = pagamento.getSelectedItem().toString();
-    if ("Dinheiro".equals(formaDePagamentoSelecionada)) {
-        // Ativar o campo troco
-        valorRecebid.setEnabled(true);
-    } else {
-        // Desativar o campo troco se a forma de pagamento não for dinheiro
-        valorRecebid.setEnabled(false);
-        Troco.setText("0"); // Limpar o texto, se necessário
-    }
+        String formaDePagamentoSelecionada = pagamento.getSelectedItem().toString();
+        if ("Dinheiro".equals(formaDePagamentoSelecionada)) {
+            // Ativar o campo troco
+            valorRecebid.setEnabled(true);
+        } else {
+            // Desativar o campo troco se a forma de pagamento não for dinheiro
+            valorRecebid.setEnabled(false);
+            Troco.setText("0"); // Limpar o texto, se necessário
+        }
     }//GEN-LAST:event_pagamentoActionPerformed
 
     private void valorRecebidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valorRecebidKeyPressed
-       // Obtém os valores
+        // Obtém os valores
         try {
-    String valorRecebidoTexto = valorRecebid.getText().replace(',', '.');
-    double valorRecebido = Double.parseDouble(valorRecebidoTexto);
+            String valorRecebidoTexto = valorRecebid.getText().replace(',', '.');
+            double valorRecebido = Double.parseDouble(valorRecebidoTexto);
 
-    // Restante do código para calcular o troco e exibir
-    double valorTotal = Double.parseDouble(TotalVenda.getText());
-    double troco = valorRecebido - valorTotal;
-    DecimalFormat formato = new DecimalFormat("#.##");
-    String trocoFormatado = formato.format(troco);
-    Troco.setText(trocoFormatado);
+            // Restante do código para calcular o troco e exibir
+            double valorTotal = Double.parseDouble(TotalVenda.getText());
+            double troco = valorRecebido - valorTotal;
+            DecimalFormat formato = new DecimalFormat("#.##");
+            String trocoFormatado = formato.format(troco);
+            Troco.setText(trocoFormatado);
 
-} catch (NumberFormatException e) {
-    // Trate o caso em que a conversão para Double não é possível
-    e.printStackTrace(); // ou outra forma de lidar com o erro
-}
-       
+        } catch (NumberFormatException e) {
+            // Trate o caso em que a conversão para Double não é possível
+            e.printStackTrace(); // ou outra forma de lidar com o erro
+        }
+
     }//GEN-LAST:event_valorRecebidKeyPressed
 
     private void canActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canActionPerformed
-               limparCampos();
+        limparCampos();
     }//GEN-LAST:event_canActionPerformed
 
     private void adicionarProdutoNaVenda() {
@@ -569,22 +566,22 @@ public class GUIVendas extends javax.swing.JInternalFrame {
                 try {
                     String val = valorObj.toString().replaceAll("[^0-9.]", "");
                     double valor = Double.parseDouble(val);
-                    soma += valor;                    
+                    soma += valor;
                 } catch (NumberFormatException e) {
                     // Trate o caso em que a conversão para Double não é possível
                     e.printStackTrace(); // ou outra forma de lidar com o erro
                 }
             }
         }
-       DecimalFormat formato = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
-    String somaFormatada = formato.format(soma);
+        DecimalFormat formato = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+        String somaFormatada = formato.format(soma);
 
-    // Exibe o valor total no campo TotalVenda
-    TotalVenda.setText( somaFormatada);
+        // Exibe o valor total no campo TotalVenda
+        TotalVenda.setText(somaFormatada);
     }
 
-    private void limparCampos(){
-    
+    private void limparCampos() {
+
         cpfCli.setText("");
         NomeCli.setText("");
         codiPro.setText("");
@@ -596,7 +593,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         TotalVenda.setText("");
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-    
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private componentes.UJTextField NomeCli;
