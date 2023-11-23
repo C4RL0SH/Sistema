@@ -160,6 +160,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuBar1.add(Produto);
 
+        venda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/basket.png"))); // NOI18N
         venda.setText("Venda");
         venda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -271,7 +272,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        GUIVendasCon vc = new GUIVendasCon();
+        Relatorio vc = new Relatorio();
         Menu.add(vc);
         vc.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed

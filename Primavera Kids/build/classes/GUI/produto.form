@@ -321,6 +321,10 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -340,18 +344,25 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cate">
       <Properties>
+        <Property name="editable" type="boolean" value="true"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="15" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Bolsas"/>
-            <StringItem index="1" value="Camisetas"/>
-            <StringItem index="2" value="Cal&#xe7;a"/>
-            <StringItem index="3" value="Meia"/>
-            <StringItem index="4" value="Sapatinhos"/>
-            <StringItem index="5" value="Sand&#xe1;lias"/>
-            <StringItem index="6" value="Shorts"/>
+          <StringArray count="13">
+            <StringItem index="0" value="Bolsa"/>
+            <StringItem index="1" value="Camisa"/>
+            <StringItem index="2" value="Camiseta"/>
+            <StringItem index="3" value="Cal&#xe7;a"/>
+            <StringItem index="4" value="Jaqueta"/>
+            <StringItem index="5" value="Macac&#xe3;o"/>
+            <StringItem index="6" value="Meia"/>
+            <StringItem index="7" value="Moletom"/>
+            <StringItem index="8" value="Saia"/>
+            <StringItem index="9" value="Sapatinho"/>
+            <StringItem index="10" value="Sand&#xe1;lia"/>
+            <StringItem index="11" value="Short"/>
+            <StringItem index="12" value="Vestido"/>
           </StringArray>
         </Property>
         <Property name="selectedIndex" type="int" value="-1"/>

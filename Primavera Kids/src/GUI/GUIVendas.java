@@ -8,10 +8,12 @@ import model.*;
 
 import controller.*;
 import java.awt.Color;
+import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +36,8 @@ public class GUIVendas extends javax.swing.JInternalFrame {
     ModelVendas modelVendas = new ModelVendas();
     ModelVendaProduto modelVendaProduto = new ModelVendaProduto();
     ArrayList<ModelVendaProduto> listamodelVendaProduto = new ArrayList<>();
+    ArrayList<ModelProduto> listamodelProduto = new ArrayList<>();
+    
 
     double quantidade = 0;
 
@@ -57,9 +61,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        can = new javax.swing.JButton();
         finalizar = new javax.swing.JButton();
-        novo = new javax.swing.JButton();
         jpProduto = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         NomePro = new javax.swing.JTextField();
@@ -92,6 +94,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Venda");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/basket.png"))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,27 +106,11 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        can.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        can.setText("Cancelar");
-        can.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                canActionPerformed(evt);
-            }
-        });
-
         finalizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         finalizar.setText("Finalizar");
         finalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finalizarActionPerformed(evt);
-            }
-        });
-
-        novo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        novo.setText("Novo");
-        novo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoActionPerformed(evt);
             }
         });
 
@@ -273,7 +260,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(NomeCli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(NomeCli, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpClienteLayout.setVerticalGroup(
@@ -332,26 +319,25 @@ public class GUIVendas extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(can)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(novo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(finalizar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valorRecebid)
-                            .addComponent(Troco)
-                            .addComponent(jLabel8)
-                            .addComponent(TotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jpProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pagamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(valorRecebid)
+                                    .addComponent(Troco)
+                                    .addComponent(jLabel8)
+                                    .addComponent(TotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 62, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -382,10 +368,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Troco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(can)
-                    .addComponent(novo)
-                    .addComponent(finalizar))
+                .addComponent(finalizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,18 +432,16 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_quantKeyPressed
 
-    private void novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoActionPerformed
-        limparCampos();
-    }//GEN-LAST:event_novoActionPerformed
-
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
-        int codigovenda = 0;
+        int codigovenda = 0, codigoProduto;
         listamodelVendaProduto = new ArrayList<>();
         modelVendas.setCliente(cpfCli.getText());
         Date dataHoraAtual = new Date();
         String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         java.sql.Date dataSql = java.sql.Date.valueOf(LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         modelVendas.setVenData(dataSql);
+        LocalTime horatual = LocalTime.now();
+        modelVendas.setVenHora(Time.valueOf(horatual));
         modelVendas.setVenValorBruto(Double.parseDouble(TotalVenda.getText()));
         double valorBruto = Double.parseDouble(TotalVenda.getText());
         String desco = desc.getText();
@@ -485,15 +466,22 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         }
         int cont = jTable1.getRowCount();
         for (int i = 0; i < cont; i++) {
+            codigoProduto = (int) jTable1.getValueAt(i, 0);
             modelVendaProduto = new ModelVendaProduto();
-            modelVendaProduto.setProduto((int) jTable1.getValueAt(i, 0));
+            modelProduto = new ModelProduto();
+            modelVendaProduto.setProduto(codigoProduto);
             modelVendaProduto.setVendas(codigovenda);
             modelVendaProduto.setVenProValor((double) jTable1.getValueAt(i, 3));
             modelVendaProduto.setVenProQuant(Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
+            modelProduto.setIdProduto(codigoProduto);
+            modelProduto.setProdQuantidade(controllerProduto.getProdutoController(codigoProduto).getProdQuantidade()
+                    - Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
             listamodelVendaProduto.add(modelVendaProduto);
+            listamodelProduto.add(modelProduto);
         }
         if (controllerVendaProduto.salvarVendaProdutodosController(listamodelVendaProduto)) {
-            JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            controllerProduto.atualizarEstoqueProdutoController(listamodelProduto);
+            JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Ocorreu um erro na venda!!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -531,10 +519,6 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_valorRecebidKeyPressed
-
-    private void canActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canActionPerformed
-        limparCampos();
-    }//GEN-LAST:event_canActionPerformed
 
     private void adicionarProdutoNaVenda() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -591,6 +575,8 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         desc.setText("");
         VTotal.setText("");
         TotalVenda.setText("");
+        valorRecebid.setText("");
+        
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -603,7 +589,6 @@ public class GUIVendas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField Troco;
     private javax.swing.JTextField VTotal;
     private javax.swing.JButton add;
-    private javax.swing.JButton can;
     private javax.swing.JTextField codiPro;
     private javax.swing.JFormattedTextField cpfCli;
     private javax.swing.JTextField desc;
@@ -624,7 +609,6 @@ public class GUIVendas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpCliente;
     private javax.swing.JPanel jpProduto;
-    private javax.swing.JButton novo;
     private javax.swing.JComboBox<String> pagamento;
     private javax.swing.JTextField quant;
     private javax.swing.JTextField valorRecebid;

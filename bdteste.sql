@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/11/2023 às 06:20
+-- Tempo de geração: 23/11/2023 às 04:11
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -61,7 +61,9 @@ CREATE TABLE `tbl_cliente` (
 --
 
 INSERT INTO `tbl_cliente` (`id_clien`, `clien_Nome`, `clien_Cpf`, `clien_Email`, `clien_Telefone`, `clien_Cep`, `clien_Endereco`, `clien_Cidade`, `clien_Estado`, `clien_Sexo`) VALUES
-(1, 'Carlos Henrique dos Santos Frederico', '730.755.310-46', 'carloshenrique@gmail.com', '(88) 98628-5279', '25223-600', 'Rua Maripa, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Masculino');
+(1, 'Carlos Henrique dos Santos Frederico', '111.111.111-11', 'carloshenrique@gmail.com', '(88) 98628-5279', '25223-600', 'Rua Maripa, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Masculino'),
+(2, 'Juliana da Silva Freitas', '222.222.222-22', 'juliana@gmail.com', '(51) 99689-6808', '55514-212', 'Rua jucelino', 'Belford Roxo', 'Rio de Janeiro (RJ)', 'Feminino'),
+(3, 'Renato Augusto de Almeida', '333.333.333-33', 'renato@gmail.com', '(91) 97107-4947', '74491-812', 'Rua Dourada', 'Rio Bonito', 'Rio de Janeiro (RJ)', 'Masculino');
 
 -- --------------------------------------------------------
 
@@ -96,10 +98,10 @@ CREATE TABLE `tbl_funcionario` (
 
 INSERT INTO `tbl_funcionario` (`id_func`, `func_Nome`, `func_Cpf`, `func_Email`, `func_Data`, `func_Sexo`, `func_Telefone`, `func_Telefone2`, `func_Cep`, `func_Endereco`, `func_Cidade`, `func_Estado`, `func_Cargo`, `func_Turno`, `func_Salario`, `func_Situacao`, `func_User`, `func_Senha`) VALUES
 (1, 'Administrador', '', '', NULL, '', '', '', '', '', '', '', 'Gerente', '', NULL, 'Ativo', 'admin', 'admin'),
-(2, 'Davi Costa de Oliveira', '414.165.425-74', 'davicosta@gmail.com', '2005-04-19', 'Masculino', '(16)54651-5646', '(54)64651-5615', '25223-600', 'Rua Maripa', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Gerente', 'Tarde', 2000, 'Ativo', 'Davi Costa', '12345'),
-(3, 'Gabriel de Andrade dos Santos', '321.654.560-23', 'gabrielandrade@gmail.com', '2004-11-23', 'Masculino', '(15)71231-6547', '(24)71646-5462', '25265-008', 'Rua da Jaqueira, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Estoquista', 'Manhã', 1500, 'Ativo', 'Gabriel de Andrade', 'biel'),
-(4, 'Maria Eduarda da Silva Pinheiro', '465.165.135-12', 'dudamaria@gmail.com', '2000-06-08', 'Feminino', '(14)11113-3265', '(23)75241-4545', '25223-075', 'Rua Sagres, Parque Moderno', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Caixa', 'Tarde', 1700, 'Ativo', 'Maria Eduarda', 'dudinha'),
-(5, 'Carlos Henrique dos Santos', '015.921.400-92', 'carlos@gmail.com', '2005-11-11', 'Masculino', '(83)98076-8744', '(79)98978-0518', '25223-600', 'Rua Maripa, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Caixa', 'Manhã', 1233.5, 'Demitido', 'Carlos Henrique', 'carlos');
+(2, 'Davi Costa de Oliveira', '414.165.425-74', 'davicosta@gmail.com', '2005-04-19', 'Masculino', '(16)54651-5646', '(54)64651-5615', '25223-600', 'Rua Maripa', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Gerente', 'Tarde', 2000, 'Ativo', 'Davi', '123'),
+(3, 'Gabriel de Andrade Santos', '321.654.560-23', 'gabrielandrade@gmail.com', '2004-11-23', 'Masculino', '(15)71231-6547', '(24)71646-5462', '25265-008', 'Rua da Jaqueira, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Estoquista', 'Manhã', 1500, 'Ativo', 'Gabriel', '123'),
+(4, 'Maria Eduarda da Silva Pinheiro', '465.165.135-12', 'dudamaria@gmail.com', '2000-06-08', 'Feminino', '(14)11113-3265', '(23)75241-4545', '25223-075', 'Rua Sagres, Parque Moderno', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Caixa', 'Tarde', 1700, 'Ativo', 'Maria', '123'),
+(5, 'Carlos Henrique dos Santos', '015.921.400-92', 'carlos@gmail.com', '2005-11-11', 'Masculino', '(83)98076-8744', '(79)98978-0518', '25223-600', 'Rua Maripa, Jardim Primavera', 'Duque de Caxias', 'Rio de Janeiro (RJ)', 'Caixa', 'Manhã', 1233.5, 'Inativo', 'Carlos Henrique', 'carlos');
 
 -- --------------------------------------------------------
 
@@ -124,8 +126,12 @@ CREATE TABLE `tbl_produto` (
 --
 
 INSERT INTO `tbl_produto` (`id_Produto`, `prod_Nome`, `prod_NomeFornec`, `prod_DataRegistro`, `prod_Categoria`, `prod_Quantidade`, `prod_Tamanho`, `prod_Preco`, `prod_Desconto`) VALUES
-(2, 'Camisa Nike Plus', 'Nike', '2023-11-09', 'Camisetas', 50, 'G', 10.99, 0),
-(3, 'Short ADIDAS', 'ADIDAS', '2023-11-15', 'Shorts', 100, 'M', 20, 50);
+(2, 'Camisa Nike Plus', 'Nike', '2023-11-09', 'Camisetas', 42, 'G', 10, 0),
+(3, 'Short ADIDAS', 'ADIDAS', '2023-11-15', 'Shorts', 100, 'M', 20, 10),
+(4, 'Camiseta Básica', 'CottonStyle', '2023-11-22', 'Camisetas', 147, 'M', 29, 10),
+(5, 'Calça Jeans Skinny ', 'Denim Trends ', '2023-11-22', 'Calça', 50, 'M', 80, 15),
+(6, 'Vestido Floral ', 'FashionFlora', '2023-11-22', 'Vestido', 30, 'P', 55, 5),
+(7, 'Blusa de Moletom com Capuz', 'CozyWear', '2023-11-22', 'Moletom', 10, 'G', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -137,6 +143,7 @@ CREATE TABLE `vendas` (
   `id_vendas` bigint(20) UNSIGNED NOT NULL,
   `cpf_cliente` varchar(20) NOT NULL,
   `ven_data` date NOT NULL,
+  `ven_Hora` time NOT NULL,
   `ven_valor_liquido` double NOT NULL,
   `ven_valor_bruto` double NOT NULL,
   `ven_Troco` double NOT NULL,
@@ -147,10 +154,15 @@ CREATE TABLE `vendas` (
 -- Despejando dados para a tabela `vendas`
 --
 
-INSERT INTO `vendas` (`id_vendas`, `cpf_cliente`, `ven_data`, `ven_valor_liquido`, `ven_valor_bruto`, `ven_Troco`, `ven_TipoPagamento`) VALUES
-(1, '730.755.310-46', '2023-11-17', 159.9, 319.8, 80.19999999999999, 'Dinheiro'),
-(2, '730.755.310-46', '2023-11-17', 36.485, 72.97, 27.03, 'Dinheiro'),
-(3, '730.755.310-46', '2023-11-17', 536.485, 1072.97, 1927.03, 'Dinheiro');
+INSERT INTO `vendas` (`id_vendas`, `cpf_cliente`, `ven_data`, `ven_Hora`, `ven_valor_liquido`, `ven_valor_bruto`, `ven_Troco`, `ven_TipoPagamento`) VALUES
+(1, '111.111.111-11', '2023-11-17', '12:18:42', 159.9, 319.8, 80.19, 'Dinheiro'),
+(2, '111.111.111-11', '2023-11-17', '17:50:00', 36.485, 72.97, 27.03, 'Dinheiro'),
+(3, '111.111.111-11', '2023-11-17', '20:25:11', 536.485, 1072.97, 1927.03, 'Dinheiro'),
+(4, '111.111.111-11', '2023-11-17', '10:00:00', 63.96, 127.92, 0, 'Cartão'),
+(5, '111.111.111-11', '2023-11-22', '22:49:07', 77.4, 86, 0, 'Cartão'),
+(6, '111.111.111-11', '2023-11-22', '22:53:49', 93.60000000000001, 104, 16, 'Dinheiro'),
+(7, '111.111.111-11', '2023-11-22', '23:14:58', 59.4, 66, 0, 'Pix'),
+(8, '222.222.222-22', '2023-11-23', '00:10:23', 128.3, 128.3, 0, 'Pix');
 
 -- --------------------------------------------------------
 
@@ -184,7 +196,18 @@ INSERT INTO `venda_produto` (`id_ven_produto`, `fk_produto`, `fk_vendas`, `ven_p
 (11, 3, 3, 10, 4),
 (12, 3, 3, 10, 4),
 (13, 3, 3, 10, 4),
-(14, 3, 3, 10, 4);
+(14, 3, 3, 10, 4),
+(15, 2, 4, 10.99, 4),
+(16, 2, 4, 10.99, 4),
+(17, 3, 4, 10.99, 4),
+(18, 2, 5, 18, 2),
+(19, 3, 5, 18, 2),
+(20, 2, 6, 18, 3),
+(21, 3, 6, 18, 3),
+(22, 2, 7, 18, 2),
+(23, 3, 7, 18, 2),
+(24, 4, 8, 50, 1),
+(25, 7, 8, 50, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -243,7 +266,7 @@ ALTER TABLE `estoque`
 -- AUTO_INCREMENT de tabela `tbl_cliente`
 --
 ALTER TABLE `tbl_cliente`
-  MODIFY `id_clien` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_clien` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_funcionario`
@@ -255,19 +278,19 @@ ALTER TABLE `tbl_funcionario`
 -- AUTO_INCREMENT de tabela `tbl_produto`
 --
 ALTER TABLE `tbl_produto`
-  MODIFY `id_Produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `venda_produto`
 --
 ALTER TABLE `venda_produto`
-  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restrições para tabelas despejadas

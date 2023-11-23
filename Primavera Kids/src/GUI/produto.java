@@ -37,6 +37,7 @@ public class produto extends javax.swing.JInternalFrame {
     }
 
     private void limpar() {
+        cod.setText("");
         nome.setText("");
         fornecedor.setText("");
         cate.setSelectedItem(null);
@@ -54,6 +55,24 @@ public class produto extends javax.swing.JInternalFrame {
         tama.setEnabled(condicao);
         pp.setEnabled(condicao);
         desc.setEnabled(condicao);
+    }
+    
+    private void pegarCampos(){
+    int linha = jTable1.getSelectedRow();
+        try {
+            int codigoProd = (int) jTable1.getValueAt(linha, 0);
+            modelProduto = controllerProduto.getProdutoController(codigoProd);
+            cod.setText(String.valueOf(modelProduto.getIdProduto()));
+            nome.setText(modelProduto.getProdNome());
+            fornecedor.setText(modelProduto.getProdNomeFornec());            
+            cate.setSelectedItem(modelProduto.getProdCategoria());
+            quant.setText(String.valueOf(modelProduto.getProdQuantidade()));
+            tama.setText(modelProduto.getProdTamanho());
+            pp.setText(String.valueOf(modelProduto.getProdPreco()));
+            desc.setText(String.valueOf(modelProduto.getProd_Desconto()));
+        } catch (Exception e) {
+           
+        }
     }
 
     private void carregarProduto() {
@@ -97,7 +116,7 @@ public class produto extends javax.swing.JInternalFrame {
         modelProduto.setProdPreco(Double.parseDouble(pp.getText().replace(',', '.')));
         modelProduto.setProd_Desconto(Integer.parseInt(desc.getText()));
         if (controllerProduto.salvarProdutoController(modelProduto) > 0) {
-            JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             this.carregarProduto();
             campos(false);
             limpar();
@@ -115,7 +134,7 @@ public class produto extends javax.swing.JInternalFrame {
         modelProduto.setProdPreco(Double.parseDouble(pp.getText().replace(',', '.')));
         modelProduto.setProd_Desconto(Integer.parseInt(desc.getText()));
         if (controllerProduto.atualizarProdutoController(modelProduto)) {
-            JOptionPane.showMessageDialog(this, "Alterado com sucesso!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Alterado com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             this.carregarProduto();
             campos(false);
             limpar();
@@ -208,6 +227,14 @@ public class produto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
@@ -228,8 +255,9 @@ public class produto extends javax.swing.JInternalFrame {
 
         quant.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
 
+        cate.setEditable(true);
         cate.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        cate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolsas", "Camisetas", "Calça", "Meia", "Sapatinhos", "Sandálias", "Shorts" }));
+        cate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolsa", "Camisa", "Camiseta", "Calça", "Jaqueta", "Macacão", "Meia", "Moletom", "Saia", "Sapatinho", "Sandália", "Short", "Vestido" }));
         cate.setSelectedIndex(-1);
 
         tama.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -461,7 +489,7 @@ public class produto extends javax.swing.JInternalFrame {
         int linha = jTable1.getSelectedRow();
         int codigoProd = (int) jTable1.getValueAt(linha, 0);
         if (controllerProduto.excluirProdutoController(codigoProd)) {
-            JOptionPane.showMessageDialog(this, "Produto excluido com sucesso!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Produto excluido com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             this.carregarProduto();
             campos(false);
             limpar();
@@ -494,6 +522,14 @@ public class produto extends javax.swing.JInternalFrame {
     private void tamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tamaActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+ pegarCampos();      
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+pegarCampos();        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

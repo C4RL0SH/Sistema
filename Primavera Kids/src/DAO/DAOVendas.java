@@ -21,6 +21,7 @@ public class DAOVendas extends ConexaoMySql {
                 "INSERT INTO vendas ("                    
                     + "cpf_cliente,"
                     + "ven_data,"
+                    + "ven_Hora,"
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
@@ -28,6 +29,7 @@ public class DAOVendas extends ConexaoMySql {
                 + ") VALUES ("                    
                     + "'" + pModelVendas.getCliente() + "',"
                     + "'" + pModelVendas.getVenData() + "',"
+                    + "'" + pModelVendas.getVenHora() + "',"
                     + "'" + pModelVendas.getVenValorLiquido() + "',"
                     + "'" + pModelVendas.getVenValorBruto() + "',"
                     + "'" + pModelVendas.getVenTroco()+ "',"
@@ -56,6 +58,7 @@ public class DAOVendas extends ConexaoMySql {
                     + "id_vendas,"
                     + "cpf_cliente,"
                     + "ven_data,"
+                    + "ven_Hora,"
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
@@ -71,10 +74,11 @@ public class DAOVendas extends ConexaoMySql {
                 modelVendas.setIdVendas(this.getResultSet().getInt(1));
                 modelVendas.setCliente(this.getResultSet().getString(2));
                 modelVendas.setVenData(this.getResultSet().getDate(3));
-                modelVendas.setVenValorLiquido(this.getResultSet().getDouble(4));
-                modelVendas.setVenValorBruto(this.getResultSet().getDouble(5));               
-                modelVendas.setVenTroco(this.getResultSet().getDouble(6));
-                modelVendas.setVenTipoPagamento(this.getResultSet().getString(7));
+                modelVendas.setVenHora(this.getResultSet().getTime(4));
+                modelVendas.setVenValorLiquido(this.getResultSet().getDouble(5));
+                modelVendas.setVenValorBruto(this.getResultSet().getDouble(6));               
+                modelVendas.setVenTroco(this.getResultSet().getDouble(7));
+                modelVendas.setVenTipoPagamento(this.getResultSet().getString(8));
                 
             }
         }catch(Exception e){
@@ -99,6 +103,7 @@ public class DAOVendas extends ConexaoMySql {
                     + "id_vendas,"
                     + "cpf_cliente,"
                     + "ven_data,"
+                    + "ven_Hora,"
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
@@ -113,9 +118,9 @@ public class DAOVendas extends ConexaoMySql {
                 modelVendas.setIdVendas(this.getResultSet().getInt(1));
                 modelVendas.setCliente(this.getResultSet().getString(2));
                 modelVendas.setVenData(this.getResultSet().getDate(3));
-                modelVendas.setVenValorLiquido(this.getResultSet().getDouble(4));
-                modelVendas.setVenValorBruto(this.getResultSet().getDouble(5));
-                
+                modelVendas.setVenHora(this.getResultSet().getTime(4));
+                modelVendas.setVenValorLiquido(this.getResultSet().getDouble(5));
+                modelVendas.setVenValorBruto(this.getResultSet().getDouble(6));                
                 modelVendas.setVenTroco(this.getResultSet().getDouble(7));
                 modelVendas.setVenTipoPagamento(this.getResultSet().getString(8));
                 listamodelVendas.add(modelVendas);
@@ -141,6 +146,7 @@ public class DAOVendas extends ConexaoMySql {
                     + "id_vendas = '" + pModelVendas.getIdVendas() + "',"
                     + "cpf_cliente = '" + pModelVendas.getCliente() + "',"
                     + "ven_data = '" + pModelVendas.getVenData() + "',"
+                    + "ven_Hora = '" + pModelVendas.getVenHora() + "',"
                     + "ven_valor_liquido = '" + pModelVendas.getVenValorLiquido() + "',"
                     + "ven_valor_bruto = '" + pModelVendas.getVenValorBruto() + "',"
                     + "ven_Troco = '" + pModelVendas.getVenTroco() + "',"

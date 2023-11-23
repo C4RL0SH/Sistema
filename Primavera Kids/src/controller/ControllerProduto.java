@@ -56,4 +56,8 @@ public class ControllerProduto {
     public boolean excluirProdutoController(int pIdProduto ){
         return this.daoProduto.excluirProdutoDAO(pIdProduto );
     }
+
+        public boolean atualizarEstoqueProdutoController(ArrayList<ModelProduto> pListaModelProduto) {
+        return this.daoProduto.atualizarEstoqueProdutoDAO(pListaModelProduto);
+    }
 }

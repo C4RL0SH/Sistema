@@ -77,6 +77,7 @@ public class estoque extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Estoque");
         setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/package.png"))); // NOI18N

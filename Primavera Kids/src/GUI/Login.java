@@ -201,7 +201,7 @@ public class Login extends javax.swing.JFrame {
                                 Menu.lblusuario.setText(rs.getString(2));
                                 this.dispose();
                             }
-                        } else if (situacao.equals("Demitido")) {
+                        } else if (situacao.equals("Inativo")) {
                             JOptionPane.showMessageDialog(this, "O Funcionário não tem mais acesso ao sistema.", "Atenção", JOptionPane.WARNING_MESSAGE);
                         }
                     }

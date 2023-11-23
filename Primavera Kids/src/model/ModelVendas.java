@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.sql.Time;
 
 /**
 *
@@ -11,6 +12,7 @@ public class ModelVendas {
     private int idVendas;
     private String cliente;
     private Date venData;
+    private Time venHora;
     private double venValorLiquido;
     private double venValorBruto;
     private int venDesconto;
@@ -62,6 +64,19 @@ public class ModelVendas {
     */
     public Date getVenData(){
         return this.venData;
+    }
+    /**
+    * seta o valor de venData
+    * @param pVenHora
+    */
+    public void setVenHora(Time pVenHora){
+        this.venHora = pVenHora;
+    }
+    /**
+    * @return venData
+    */
+    public Time getVenHora(){
+        return this.venHora;
     }
 
     /**
@@ -135,6 +150,6 @@ public class ModelVendas {
 
     @Override
     public String toString(){
-        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto + "::venTroco = " + this.venTroco + "::venTipoPagamento = " + this.venTipoPagamento +"}";
+        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venHora = " + this.venHora + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto + "::venTroco = " + this.venTroco + "::venTipoPagamento = " + this.venTipoPagamento +"}";
     }
 }
