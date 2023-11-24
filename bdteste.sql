@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/11/2023 às 04:11
+-- Tempo de geração: 24/11/2023 às 04:29
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -131,7 +131,7 @@ INSERT INTO `tbl_produto` (`id_Produto`, `prod_Nome`, `prod_NomeFornec`, `prod_D
 (4, 'Camiseta Básica', 'CottonStyle', '2023-11-22', 'Camisetas', 147, 'M', 29, 10),
 (5, 'Calça Jeans Skinny ', 'Denim Trends ', '2023-11-22', 'Calça', 50, 'M', 80, 15),
 (6, 'Vestido Floral ', 'FashionFlora', '2023-11-22', 'Vestido', 30, 'P', 55, 5),
-(7, 'Blusa de Moletom com Capuz', 'CozyWear', '2023-11-22', 'Moletom', 10, 'G', 50, 0);
+(7, 'Blusa de Moletom com Capuz', 'CozyWear', '2023-11-22', 'Moletom', 7, 'G', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -147,22 +147,26 @@ CREATE TABLE `vendas` (
   `ven_valor_liquido` double NOT NULL,
   `ven_valor_bruto` double NOT NULL,
   `ven_Troco` double NOT NULL,
-  `ven_TipoPagamento` varchar(50) NOT NULL
+  `ven_TipoPagamento` varchar(50) NOT NULL,
+  `ven_NomeCli` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `vendas`
 --
 
-INSERT INTO `vendas` (`id_vendas`, `cpf_cliente`, `ven_data`, `ven_Hora`, `ven_valor_liquido`, `ven_valor_bruto`, `ven_Troco`, `ven_TipoPagamento`) VALUES
-(1, '111.111.111-11', '2023-11-17', '12:18:42', 159.9, 319.8, 80.19, 'Dinheiro'),
-(2, '111.111.111-11', '2023-11-17', '17:50:00', 36.485, 72.97, 27.03, 'Dinheiro'),
-(3, '111.111.111-11', '2023-11-17', '20:25:11', 536.485, 1072.97, 1927.03, 'Dinheiro'),
-(4, '111.111.111-11', '2023-11-17', '10:00:00', 63.96, 127.92, 0, 'Cartão'),
-(5, '111.111.111-11', '2023-11-22', '22:49:07', 77.4, 86, 0, 'Cartão'),
-(6, '111.111.111-11', '2023-11-22', '22:53:49', 93.60000000000001, 104, 16, 'Dinheiro'),
-(7, '111.111.111-11', '2023-11-22', '23:14:58', 59.4, 66, 0, 'Pix'),
-(8, '222.222.222-22', '2023-11-23', '00:10:23', 128.3, 128.3, 0, 'Pix');
+INSERT INTO `vendas` (`id_vendas`, `cpf_cliente`, `ven_data`, `ven_Hora`, `ven_valor_liquido`, `ven_valor_bruto`, `ven_Troco`, `ven_TipoPagamento`, `ven_NomeCli`) VALUES
+(1, '111.111.111-11', '2023-11-17', '12:18:42', 159.9, 319.8, 80.19, 'Dinheiro', 'Carlos Henrique dos Santos Frederico'),
+(2, '111.111.111-11', '2023-11-17', '17:50:00', 36.48, 72.97, 27.03, 'Dinheiro', 'Carlos Henrique dos Santos Frederico'),
+(3, '111.111.111-11', '2023-11-17', '20:25:11', 536.48, 1072.97, 1927.03, 'Dinheiro', 'Carlos Henrique dos Santos Frederico'),
+(4, '111.111.111-11', '2023-11-17', '10:00:00', 63.96, 127.92, 0, 'Cartão', 'Carlos Henrique dos Santos Frederico'),
+(5, '111.111.111-11', '2023-11-22', '22:49:07', 77.4, 86, 0, 'Cartão', 'Carlos Henrique dos Santos Frederico'),
+(6, '111.111.111-11', '2023-11-22', '22:53:49', 93.6, 104, 16, 'Dinheiro', 'Carlos Henrique dos Santos Frederico'),
+(7, '111.111.111-11', '2023-11-22', '23:14:58', 59.4, 66, 0, 'Pix', 'Carlos Henrique dos Santos Frederico'),
+(8, '222.222.222-22', '2023-11-23', '00:10:23', 128.3, 128.3, 0, 'Pix', 'Juliana da Silva Freitas'),
+(9, '333.333.333-33', '2023-11-23', '00:26:45', 97.13, 102.25, 7.75, 'Dinheiro', 'Renato Augusto de Almeida'),
+(10, '333.333.333-33', '2023-11-23', '00:36:27', 442.46, 465.75, 0, 'Pix', 'Renato Augusto de Almeida'),
+(11, '333.333.333-33', '2023-11-24', '00:25:56', 291.78, 324.2, 0, 'Pix', 'Renato Augusto de Almeida');
 
 -- --------------------------------------------------------
 
@@ -207,7 +211,11 @@ INSERT INTO `venda_produto` (`id_ven_produto`, `fk_produto`, `fk_vendas`, `ven_p
 (22, 2, 7, 18, 2),
 (23, 3, 7, 18, 2),
 (24, 4, 8, 50, 1),
-(25, 7, 8, 50, 1);
+(25, 7, 8, 50, 1),
+(26, 7, 9, 52.25, 1),
+(27, 6, 9, 52.25, 1),
+(28, 7, 10, 52.25, 7),
+(29, 6, 10, 52.25, 7);
 
 --
 -- Índices para tabelas despejadas
@@ -284,13 +292,13 @@ ALTER TABLE `tbl_produto`
 -- AUTO_INCREMENT de tabela `vendas`
 --
 ALTER TABLE `vendas`
-  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_vendas` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `venda_produto`
 --
 ALTER TABLE `venda_produto`
-  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_ven_produto` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restrições para tabelas despejadas

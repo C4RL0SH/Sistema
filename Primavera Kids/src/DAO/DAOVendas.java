@@ -25,7 +25,8 @@ public class DAOVendas extends ConexaoMySql {
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
-                    + "ven_TipoPagamento"  
+                    + "ven_TipoPagamento,"  
+                    + "ven_NomeCli"  
                 + ") VALUES ("                    
                     + "'" + pModelVendas.getCliente() + "',"
                     + "'" + pModelVendas.getVenData() + "',"
@@ -33,7 +34,8 @@ public class DAOVendas extends ConexaoMySql {
                     + "'" + pModelVendas.getVenValorLiquido() + "',"
                     + "'" + pModelVendas.getVenValorBruto() + "',"
                     + "'" + pModelVendas.getVenTroco()+ "',"
-                    + "'" + pModelVendas.getVenTipoPagamento()+ "'"
+                    + "'" + pModelVendas.getVenTipoPagamento()+ "',"
+                    + "'" + pModelVendas.getVenNomeCliente()+ "'"
                 + ");"
             );
         }catch(Exception e){
@@ -62,7 +64,8 @@ public class DAOVendas extends ConexaoMySql {
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
-                    + "ven_TipoPagamento"  
+                    + "ven_TipoPagamento,"  
+                    + "ven_NomeCli"  
                  + " FROM"
                      + " vendas"
                  + " WHERE"
@@ -79,6 +82,7 @@ public class DAOVendas extends ConexaoMySql {
                 modelVendas.setVenValorBruto(this.getResultSet().getDouble(6));               
                 modelVendas.setVenTroco(this.getResultSet().getDouble(7));
                 modelVendas.setVenTipoPagamento(this.getResultSet().getString(8));
+                modelVendas.setVenNomeCliente(this.getResultSet().getString(9));
                 
             }
         }catch(Exception e){
@@ -107,7 +111,8 @@ public class DAOVendas extends ConexaoMySql {
                     + "ven_valor_liquido,"
                     + "ven_valor_bruto,"
                     + "ven_Troco,"
-                    + "ven_TipoPagamento"    
+                    + "ven_TipoPagamento,"    
+                    + "ven_NomeCli"    
                  + " FROM"
                      + " vendas"
                 + ";"
@@ -123,6 +128,7 @@ public class DAOVendas extends ConexaoMySql {
                 modelVendas.setVenValorBruto(this.getResultSet().getDouble(6));                
                 modelVendas.setVenTroco(this.getResultSet().getDouble(7));
                 modelVendas.setVenTipoPagamento(this.getResultSet().getString(8));
+                modelVendas.setVenNomeCliente(this.getResultSet().getString(9));
                 listamodelVendas.add(modelVendas);
             }
         }catch(Exception e){
@@ -150,7 +156,8 @@ public class DAOVendas extends ConexaoMySql {
                     + "ven_valor_liquido = '" + pModelVendas.getVenValorLiquido() + "',"
                     + "ven_valor_bruto = '" + pModelVendas.getVenValorBruto() + "',"
                     + "ven_Troco = '" + pModelVendas.getVenTroco() + "',"
-                    + "ven_TipoPagamento = '" + pModelVendas.getVenTipoPagamento() + "'"
+                    + "ven_TipoPagamento = '" + pModelVendas.getVenTipoPagamento() + "',"
+                    + "ven_NomeCli = '" + pModelVendas.getVenNomeCliente()+ "'"
                 + " WHERE "
                     + "id_vendas = '" + pModelVendas.getIdVendas() + "'"
                 + ";"

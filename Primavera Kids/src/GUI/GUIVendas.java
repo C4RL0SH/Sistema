@@ -459,29 +459,10 @@ public class GUIVendas extends javax.swing.JInternalFrame {
             e.printStackTrace(); // ou outra forma de lidar com o erro
         }
         modelVendas.setVenTipoPagamento(pagamento.getSelectedItem().toString());
+        modelVendas.setVenNomeCliente(NomeCli.getText());
 
         codigovenda = controllerVendas.salvarVendasController(modelVendas);
-        if (codigovenda > 0) {            
-        } else {            
-        }
-        int cont = jTable1.getRowCount();
-        for (int i = 0; i < cont; i++) {
-            codigoProduto = (int) jTable1.getValueAt(i, 0);
-            modelVendaProduto = new ModelVendaProduto();
-            modelProduto = new ModelProduto();
-            modelVendaProduto.setProduto(codigoProduto);
-            modelVendaProduto.setVendas(codigovenda);
-            modelVendaProduto.setVenProValor((double) jTable1.getValueAt(i, 3));
-            modelVendaProduto.setVenProQuant(Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
-            modelProduto.setIdProduto(codigoProduto);
-            modelProduto.setProdQuantidade(controllerProduto.getProdutoController(codigoProduto).getProdQuantidade()
-                    - Integer.parseInt(jTable1.getValueAt(i, 2).toString()));
-            listamodelVendaProduto.add(modelVendaProduto);
-            listamodelProduto.add(modelProduto);
-        }
-        if (controllerVendaProduto.salvarVendaProdutodosController(listamodelVendaProduto)) {
-            controllerProduto.atualizarEstoqueProdutoController(listamodelProduto);
-            JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+        if (codigovenda > 0) {  JOptionPane.showMessageDialog(this, "Venda efetuada com sucesso!!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Ocorreu um erro na venda!!", "Error", JOptionPane.ERROR_MESSAGE);

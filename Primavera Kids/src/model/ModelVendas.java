@@ -18,6 +18,7 @@ public class ModelVendas {
     private int venDesconto;
     private double venTroco;
     private String venTipoPagamento;
+    private String venNomeCliente;
 
     /**
     * Construtor
@@ -147,9 +148,22 @@ public class ModelVendas {
     public String getVenTipoPagamento(){
         return this.venTipoPagamento;
     }
+    /**
+    * seta o valor de Tipo de Pagamento
+    * @param pVenNomeCliente
+    */
+    public void setVenNomeCliente(String pVenNomeCliente){
+        this.venNomeCliente = pVenNomeCliente;
+    }
+    /**
+    * @return pVenNomeCliente
+    */
+    public String getVenNomeCliente(){
+        return this.venNomeCliente;
+    }
 
     @Override
     public String toString(){
-        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venHora = " + this.venHora + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto + "::venTroco = " + this.venTroco + "::venTipoPagamento = " + this.venTipoPagamento +"}";
+        return "ModelVendas {" + "::idVendas = " + this.idVendas + "::cliente = " + this.cliente + "::venData = " + this.venData + "::venHora = " + this.venHora + "::venValorLiquido = " + this.venValorLiquido + "::venValorBruto = " + this.venValorBruto + "::venDesconto = " + this.venDesconto + "::venTroco = " + this.venTroco + "::venTipoPagamento = " + this.venTipoPagamento + "::venNomeCliente = " + this.venNomeCliente +"}";
     }
 }

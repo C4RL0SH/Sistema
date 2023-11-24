@@ -60,11 +60,11 @@ public class Relatorio extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "CPF", "Data", "Horário", "Valor Bruto", "Valor Líquido", "Troco", "Pagamento"
+                "Id", "CPF", "Nome", "Data", "Horário", "Valor Bruto", "Valor Líquido", "Pagamento", "Troco"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -101,9 +101,10 @@ public class Relatorio extends javax.swing.JInternalFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pesq, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -143,12 +144,13 @@ public class Relatorio extends javax.swing.JInternalFrame {
          
          listaModelVendas.get(i).getIdVendas(),
          listaModelVendas.get(i).getCliente(),
+         listaModelVendas.get(i).getVenNomeCliente(),
          listaModelVendas.get(i).getVenData(),
          listaModelVendas.get(i).getVenHora(),
          listaModelVendas.get(i).getVenValorBruto(),
          listaModelVendas.get(i).getVenValorLiquido(),
-         listaModelVendas.get(i).getVenTroco(),
-         listaModelVendas.get(i).getVenTipoPagamento()
+         listaModelVendas.get(i).getVenTipoPagamento(),
+         listaModelVendas.get(i).getVenTroco()
          });
      }
  }
