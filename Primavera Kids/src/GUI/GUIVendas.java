@@ -93,8 +93,10 @@ public class GUIVendas extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Venda");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/basket.png"))); // NOI18N
+        setInheritsPopupMenu(true);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +107,9 @@ public class GUIVendas extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        }
 
         finalizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         finalizar.setText("Finalizar");
@@ -337,7 +342,7 @@ public class GUIVendas extends javax.swing.JInternalFrame {
                                     .addComponent(Troco)
                                     .addComponent(jLabel8)
                                     .addComponent(TotalVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 62, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

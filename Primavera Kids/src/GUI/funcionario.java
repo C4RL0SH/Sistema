@@ -15,12 +15,12 @@ public class funcionario extends javax.swing.JInternalFrame {
     ControllerFuncionario controllerFuncionario = new ControllerFuncionario();
     ModelFuncionario modelFuncionario = new ModelFuncionario();
     String salvarAlterar;
-    
 
     public funcionario() {
         initComponents();
         carregarFuncionario();
         campos(false);
+
         Color minhaCor = new Color(255, 242, 190);
         getContentPane().setBackground(minhaCor);
     }
@@ -141,7 +141,7 @@ public class funcionario extends javax.swing.JInternalFrame {
         modelFuncionario.setFuncTurno(this.tur.getSelectedItem().toString());
         modelFuncionario.setFuncSalario(Double.parseDouble(this.sala.getText().replace(',', '.')));
         modelFuncionario.setFuncUser(this.user.getText());
-        modelFuncionario.setFuncSenha(this.sen.getText());       
+        modelFuncionario.setFuncSenha(this.sen.getText());
         if (controllerFuncionario.atualizarFuncionarioController(modelFuncionario)) {
             JOptionPane.showMessageDialog(this, "Alterado com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             this.carregarFuncionario();
@@ -152,8 +152,8 @@ public class funcionario extends javax.swing.JInternalFrame {
         }
     }
 
-    private void pegarCampos(){
-    int linha = jTable1.getSelectedRow();
+    private void pegarCampos() {
+        int linha = jTable1.getSelectedRow();
         try {
             int codigoFunci = (int) jTable1.getValueAt(linha, 0);
             modelFuncionario = controllerFuncionario.getFuncionarioController(codigoFunci);
@@ -174,12 +174,22 @@ public class funcionario extends javax.swing.JInternalFrame {
             sala.setText(String.valueOf(modelFuncionario.getFuncSalario()));
             user.setText(modelFuncionario.getFuncUser());
             sen.setText(modelFuncionario.getFuncSenha());
-            
+
         } catch (Exception e) {
-            
+
         }
     }
-    
+
+    private boolean camposVazios() {
+        if (nome.getText().isEmpty() || CPF.getText().isEmpty() || email.getText().isEmpty() || data.getDate().toString().isEmpty()
+                || cel.getText().isEmpty() || tel.getText().isEmpty() || sexo.getSelectedItem().toString().isEmpty() || end.getText().isEmpty()
+                || cidade.getText().isEmpty() || estado.getSelectedItem().toString().isEmpty() || CEP.getText().isEmpty() || car.getSelectedItem().toString().isEmpty()
+                || tur.getSelectedItem().toString().isEmpty() || sala.getText().isEmpty() || user.getText().isEmpty() || sen.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -228,7 +238,6 @@ public class funcionario extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 242, 190));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -279,11 +288,6 @@ public class funcionario extends javax.swing.JInternalFrame {
         nome.setPreferredSize(new java.awt.Dimension(200, 27));
 
         email.setPreferredSize(new java.awt.Dimension(200, 27));
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
 
         data.setDateFormatString("dd/MM/yyyy"); // NOI18N
         data.setPreferredSize(new java.awt.Dimension(200, 27));
@@ -297,11 +301,6 @@ public class funcionario extends javax.swing.JInternalFrame {
         cel.setPreferredSize(new java.awt.Dimension(200, 25));
 
         end.setPreferredSize(new java.awt.Dimension(200, 25));
-        end.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endActionPerformed(evt);
-            }
-        });
 
         try {
             CPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -534,7 +533,7 @@ public class funcionario extends javax.swing.JInternalFrame {
                         .addComponent(lim, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(novo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
                         .addComponent(AtivoDesativo)
                         .addGap(18, 18, 18)
                         .addComponent(sal, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -618,7 +617,7 @@ public class funcionario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -634,12 +633,23 @@ public class funcionario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salActionPerformed
-        if (salvarAlterar.equals("salvar")) {
-            salvar();
-        } else if (salvarAlterar.equals("alterar")) {
-            alterar();
+        if (this.salvarAlterar != null) {
+            if (salvarAlterar.equals("salvar")) {
+                if (!camposVazios()) {
+                    salvar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Preencha todos os campos antes de salvar.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+            } else if (salvarAlterar.equals("alterar")) {
+                alterar();
+            } else if (salvarAlterar.equals("cancelar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else if (salvarAlterar.equals("limpar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "É preciso escolher entre 'Alterar' e 'Novo' para salvar os dados.", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
-
     }//GEN-LAST:event_salActionPerformed
 
     private void altActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altActionPerformed
@@ -666,42 +676,43 @@ public class funcionario extends javax.swing.JInternalFrame {
             sala.setText(String.valueOf(modelFuncionario.getFuncSalario()));
             user.setText(modelFuncionario.getFuncUser());
             sen.setText(modelFuncionario.getFuncSenha());
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Código inválido ou nenhum registro selecionado!", "Aviso", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_altActionPerformed
 
     private void AtivoDesativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtivoDesativoActionPerformed
-       int linha = jTable1.getSelectedRow();
-    if (linha >= 0) {
-        int codigoFunci = (int) jTable1.getValueAt(linha, 0);
+        int linha = jTable1.getSelectedRow();
+        if (linha >= 0) {
+            int codigoFunci = (int) jTable1.getValueAt(linha, 0);
 
-        // Obtenha o funcionário selecionado no jTable ou da maneira apropriada no seu contexto
-        modelFuncionario = controllerFuncionario.getFuncionarioController(codigoFunci);
+            // Obtenha o funcionário selecionado no jTable ou da maneira apropriada no seu contexto
+            modelFuncionario = controllerFuncionario.getFuncionarioController(codigoFunci);
 
-        // Verifique a situação atual do funcionário e defina a nova situação
-        if ("Ativo".equals(modelFuncionario.getFuncSituacao())) {
-            modelFuncionario.setFuncSituacao("Inativo");
-            JOptionPane.showMessageDialog(this, "Status do Funcionário: Ativo", "Aviso",JOptionPane.INFORMATION_MESSAGE);
-        } else if ("Inativo".equals(modelFuncionario.getFuncSituacao())) {
-            modelFuncionario.setFuncSituacao("Ativo");
-            JOptionPane.showMessageDialog(this, "Status do Funcionário: Inativo", "Aviso",JOptionPane.INFORMATION_MESSAGE);
+            // Verifique a situação atual do funcionário e defina a nova situação
+            if ("Ativo".equals(modelFuncionario.getFuncSituacao())) {
+                modelFuncionario.setFuncSituacao("Inativo");
+                JOptionPane.showMessageDialog(this, "Status do Funcionário: Ativo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            } else if ("Inativo".equals(modelFuncionario.getFuncSituacao())) {
+                modelFuncionario.setFuncSituacao("Ativo");
+                JOptionPane.showMessageDialog(this, "Status do Funcionário: Inativo", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            // Chame o método para atualizar a situação no banco de dados
+            boolean sucesso = controllerFuncionario.alternarSituacaoFuncionarioController(modelFuncionario);
+
+            if (sucesso) {
+                // Atualize a tabela ou realize ações necessárias após a modificação no banco de dados
+                carregarFuncionario();
+            } else {
+                JOptionPane.showMessageDialog(this, "Erro ao atualizar a situação do funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         }
-
-        // Chame o método para atualizar a situação no banco de dados
-        boolean sucesso = controllerFuncionario.alternarSituacaoFuncionarioController(modelFuncionario);
-
-        if (sucesso) {
-            // Atualize a tabela ou realize ações necessárias após a modificação no banco de dados
-            carregarFuncionario();
-        } else {
-            JOptionPane.showMessageDialog(this, "Erro ao atualizar a situação do funcionário", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }
     }//GEN-LAST:event_AtivoDesativoActionPerformed
 
     private void limActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limActionPerformed
+        salvarAlterar = "limpar";
         limpar();
     }//GEN-LAST:event_limActionPerformed
 
@@ -719,20 +730,13 @@ public class funcionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_novoActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        salvarAlterar = "cancelar";
         campos(false);
         limpar();
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void endActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endActionPerformed
-
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-pegarCampos();        // TODO add your handling code here:
+        pegarCampos();
     }//GEN-LAST:event_jTable1MouseReleased
 
 

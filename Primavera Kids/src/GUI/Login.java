@@ -4,11 +4,7 @@
  */
 package GUI;
 
-import javax.swing.JOptionPane;
-import DAO.*;
-import GUI.Menu;
 import controller.ControllerFuncionario;
-import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,6 +16,8 @@ import model.ModelFuncionario;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -34,6 +32,8 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
+        
+
         initComponents();
     }
 

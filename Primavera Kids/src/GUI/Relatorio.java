@@ -53,14 +53,14 @@ public class Relatorio extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Relatório");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/page.png"))); // NOI18N
-        setMinimumSize(new java.awt.Dimension(1292, 756));
+        setMinimumSize(new java.awt.Dimension(100, 100));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "CPF", "Nome", "Data", "Horário", "Valor Bruto", "Valor Líquido", "Pagamento", "Troco"
+                "Id", "CPF", "Nome", "Valor Bruto", "Valor Líquido", "Pagamento", "Troco", "Data", "Horário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -145,12 +145,12 @@ public class Relatorio extends javax.swing.JInternalFrame {
          listaModelVendas.get(i).getIdVendas(),
          listaModelVendas.get(i).getCliente(),
          listaModelVendas.get(i).getVenNomeCliente(),
-         listaModelVendas.get(i).getVenData(),
-         listaModelVendas.get(i).getVenHora(),
          listaModelVendas.get(i).getVenValorBruto(),
          listaModelVendas.get(i).getVenValorLiquido(),
          listaModelVendas.get(i).getVenTipoPagamento(),
-         listaModelVendas.get(i).getVenTroco()
+         listaModelVendas.get(i).getVenTroco(),
+         listaModelVendas.get(i).getVenData(),
+         listaModelVendas.get(i).getVenHora()
          });
      }
  }

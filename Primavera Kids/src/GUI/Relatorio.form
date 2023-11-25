@@ -11,7 +11,7 @@
       <Image iconType="3" name="/Imagem/page.png"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1292, 756]"/>
+      <Dimension value="[100, 100]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -80,12 +80,12 @@
                 <Column editable="false" title="Id" type="java.lang.Object"/>
                 <Column editable="false" title="CPF" type="java.lang.Object"/>
                 <Column editable="false" title="Nome" type="java.lang.Object"/>
-                <Column editable="false" title="Data" type="java.lang.Object"/>
-                <Column editable="false" title="Hor&#xe1;rio" type="java.lang.Object"/>
                 <Column editable="false" title="Valor Bruto" type="java.lang.Object"/>
                 <Column editable="false" title="Valor L&#xed;quido" type="java.lang.Object"/>
                 <Column editable="false" title="Pagamento" type="java.lang.Object"/>
                 <Column editable="false" title="Troco" type="java.lang.Object"/>
+                <Column editable="false" title="Data" type="java.lang.Object"/>
+                <Column editable="false" title="Hor&#xe1;rio" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

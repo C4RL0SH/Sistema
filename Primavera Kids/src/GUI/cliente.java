@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  * @author Carlos
  */
 public class cliente extends javax.swing.JInternalFrame {
-    
+
     ArrayList<ModelCliente> listaModelCliente = new ArrayList<>();
     ControllerCliente controllerCliente = new ControllerCliente();
     ModelCliente modelCliente = new ModelCliente();
@@ -34,11 +34,11 @@ public class cliente extends javax.swing.JInternalFrame {
         initComponents();
         Color minhaCor = new Color(255, 242, 190);
         getContentPane().setBackground(minhaCor);
-        
+
         carregarcliente();
         campos(false);
     }
-    
+
     private void limpar() {
         nome.setText("");
         CPF.setText("");
@@ -50,9 +50,9 @@ public class cliente extends javax.swing.JInternalFrame {
         estado.setSelectedItem(null);
         cep.setText("");
     }
-    
-    private void pegarCampos(){
-    int linha = jTable1.getSelectedRow();
+
+    private void pegarCampos() {
+        int linha = jTable1.getSelectedRow();
         try {
             int codigoClien = (int) jTable1.getValueAt(linha, 0);
             modelCliente = controllerCliente.getClienteController(codigoClien);
@@ -67,9 +67,9 @@ public class cliente extends javax.swing.JInternalFrame {
             cep.setText(modelCliente.getClienCep());
         } catch (Exception e) {
         }
-    
+
     }
-    
+
     private void campos(boolean condicao) {
         nome.setEnabled(condicao);
         CPF.setEnabled(condicao);
@@ -80,9 +80,9 @@ public class cliente extends javax.swing.JInternalFrame {
         cidade.setEnabled(condicao);
         estado.setEnabled(condicao);
         cep.setEnabled(condicao);
-        
+
     }
-    
+
     private void salvar() {
         modelCliente.setClienNome(nome.getText());
         modelCliente.setClienCpf(CPF.getText());
@@ -102,7 +102,7 @@ public class cliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar o cliente!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void alterar() {
         modelCliente.setClienNome(nome.getText());
         modelCliente.setClienCpf(CPF.getText());
@@ -122,12 +122,12 @@ public class cliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Erro ao alterar!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void carregarcliente() {
         listaModelCliente = controllerCliente.getListaClienteController();
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
-        
+
         int cont = listaModelCliente.size();
         for (int i = 0; i < cont; i++) {
             modelo.addRow(new Object[]{
@@ -136,13 +136,24 @@ public class cliente extends javax.swing.JInternalFrame {
                 listaModelCliente.get(i).getClienCpf(),
                 listaModelCliente.get(i).getClienEmail(),
                 listaModelCliente.get(i).getClienTelefone(),
-                listaModelCliente.get(i).getClienSexo(),
-                //listaModelCliente.get(i).getClienEndereco(),
-               // listaModelCliente.get(i).getClienCidade(),
-               // listaModelCliente.get(i).getClienEstado(),
-               // listaModelCliente.get(i).getClienCep()
-            
+                listaModelCliente.get(i).getClienSexo(), //listaModelCliente.get(i).getClienEndereco(),
+            // listaModelCliente.get(i).getClienCidade(),
+            // listaModelCliente.get(i).getClienEstado(),
+            // listaModelCliente.get(i).getClienCep()
             });
+        }
+    }
+
+    private boolean camposVazios() {
+        if (nome.getText().isEmpty() || CPF.getText().isEmpty() || email.getText().isEmpty()
+                || cel.getText().isEmpty() || sexo.getSelectedItem().toString().isEmpty()
+                || end.getText().isEmpty() || cidade.getText().isEmpty() || estado.getSelectedItem().toString().isEmpty()
+                || cep.getText().isEmpty()) {
+            // Um ou mais campos estão vazios, não salve
+            return true;
+        } else {
+            // Todos os campos estão preenchidos, pode salvar
+            return false;
         }
     }
 
@@ -187,12 +198,14 @@ public class cliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Cliente");
         setToolTipText("");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/group.png"))); // NOI18N
 
         sexo.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
+        sexo.setSelectedIndex(-1);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setText("CEP:");
@@ -334,7 +347,7 @@ public class cliente extends javax.swing.JInternalFrame {
 
         cancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cancelar.setText("Cancelar");
-        cancelar.setMaximumSize(new java.awt.Dimension(74, 27));
+        cancelar.setMaximumSize(new java.awt.Dimension(100, 100));
         cancelar.setMinimumSize(new java.awt.Dimension(74, 27));
         cancelar.setPreferredSize(new java.awt.Dimension(77, 27));
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -407,9 +420,8 @@ public class cliente extends javax.swing.JInternalFrame {
                                 .addComponent(lim, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(novo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
-                                .addComponent(sal, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 296, Short.MAX_VALUE)
+                                .addComponent(sal, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -482,10 +494,22 @@ public class cliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salActionPerformed
-        if (salvarAlterar.equals("salvar")) {
-            salvar();
-        } else if (salvarAlterar.equals("alterar")) {
-            alterar();
+        if (this.salvarAlterar != null) {
+            if (salvarAlterar.equals("salvar")) {
+                if (!camposVazios()) {
+                    salvar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Preencha todos os campos antes de salvar.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+            } else if (salvarAlterar.equals("alterar")) {
+                alterar();
+            } else if (salvarAlterar.equals("cancelar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else if (salvarAlterar.equals("limpar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "É preciso escolher entre 'Alterar' e 'Novo' para salvar os dados.", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_salActionPerformed
 
@@ -525,6 +549,7 @@ public class cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_excActionPerformed
 
     private void limActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limActionPerformed
+        salvarAlterar = "limpar";
         limpar();
     }//GEN-LAST:event_limActionPerformed
 
@@ -536,6 +561,7 @@ public class cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_pesqKeyReleased
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        salvarAlterar = "cancelar";
         campos(false);
         limpar();
     }//GEN-LAST:event_cancelarActionPerformed
@@ -546,7 +572,7 @@ public class cliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_novoActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-pegarCampos();
+        pegarCampos();
     }//GEN-LAST:event_jTable1MouseClicked
 
 

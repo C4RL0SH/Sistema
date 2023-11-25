@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/Relatorio.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/cliente.java</file>
             <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/GUIVendas.java</file>
             <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/Menu.java</file>
-            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/DAO/DAOVendas.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/estoque.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/produto.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/funcionario.java</file>
+            <file>file:/C:/Users/Carlos/Documents/NetBeansProjects/Primavera%20Kids/src/GUI/Login.java</file>
         </group>
     </open-files>
 </project-private>

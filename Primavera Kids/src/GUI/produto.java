@@ -56,22 +56,22 @@ public class produto extends javax.swing.JInternalFrame {
         pp.setEnabled(condicao);
         desc.setEnabled(condicao);
     }
-    
-    private void pegarCampos(){
-    int linha = jTable1.getSelectedRow();
+
+    private void pegarCampos() {
+        int linha = jTable1.getSelectedRow();
         try {
             int codigoProd = (int) jTable1.getValueAt(linha, 0);
             modelProduto = controllerProduto.getProdutoController(codigoProd);
             cod.setText(String.valueOf(modelProduto.getIdProduto()));
             nome.setText(modelProduto.getProdNome());
-            fornecedor.setText(modelProduto.getProdNomeFornec());            
+            fornecedor.setText(modelProduto.getProdNomeFornec());
             cate.setSelectedItem(modelProduto.getProdCategoria());
             quant.setText(String.valueOf(modelProduto.getProdQuantidade()));
             tama.setText(modelProduto.getProdTamanho());
             pp.setText(String.valueOf(modelProduto.getProdPreco()));
             desc.setText(String.valueOf(modelProduto.getProd_Desconto()));
         } catch (Exception e) {
-           
+
         }
     }
 
@@ -100,15 +100,15 @@ public class produto extends javax.swing.JInternalFrame {
     private void salvar() {
         modelProduto.setProdNome(nome.getText());
         modelProduto.setProdNomeFornec(fornecedor.getText());
-       
+
         // Obtendo a data e hora atuais
-    Date dataHoraAtual = new Date();
-    
-    // Formatando a data para o formato desejado (dd/MM/yyyy)
-    String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-    
-    // Convertendo a data formatada para um objeto java.sql.Date
-    java.sql.Date dataSql = java.sql.Date.valueOf(LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        Date dataHoraAtual = new Date();
+
+        // Formatando a data para o formato desejado (dd/MM/yyyy)
+        String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+
+        // Convertendo a data formatada para um objeto java.sql.Date
+        java.sql.Date dataSql = java.sql.Date.valueOf(LocalDate.parse(dataFormatada, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         modelProduto.setProdDataRegistro(dataSql);
         modelProduto.setProdCategoria(cate.getSelectedItem().toString());
         modelProduto.setProdQuantidade(Integer.parseInt(quant.getText()));
@@ -127,7 +127,7 @@ public class produto extends javax.swing.JInternalFrame {
 
     private void alterar() {
         modelProduto.setProdNome(nome.getText());
-        modelProduto.setProdNomeFornec(fornecedor.getText());        
+        modelProduto.setProdNomeFornec(fornecedor.getText());
         modelProduto.setProdCategoria(cate.getSelectedItem().toString());
         modelProduto.setProdQuantidade(Integer.parseInt(quant.getText()));
         modelProduto.setProdTamanho(tama.getText());
@@ -140,6 +140,16 @@ public class produto extends javax.swing.JInternalFrame {
             limpar();
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao alterar!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean camposVazios() {
+        if (cod.getText().isEmpty() || nome.getText().isEmpty() || fornecedor.getText().isEmpty() || cate.getSelectedItem().toString().isEmpty()
+                || quant.getText().isEmpty() || tama.getText().isEmpty() || pp.getText().isEmpty()
+                || desc.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -175,7 +185,6 @@ public class produto extends javax.swing.JInternalFrame {
         novo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 242, 190));
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -262,11 +271,6 @@ public class produto extends javax.swing.JInternalFrame {
 
         tama.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         tama.setPreferredSize(new java.awt.Dimension(150, 25));
-        tama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tamaActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel5.setText("Código:");
@@ -391,7 +395,7 @@ public class produto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addComponent(tama, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,7 +446,7 @@ public class produto extends javax.swing.JInternalFrame {
                     .addComponent(pesq, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,10 +462,22 @@ public class produto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salActionPerformed
-        if (SalvarAlterar.equals("salvar")) {
-            salvar();
-        } else if (SalvarAlterar.equals("alterar")) {
-            alterar();
+        if (this.SalvarAlterar != null) {
+            if (SalvarAlterar.equals("salvar")) {
+                if (!camposVazios()) {
+                    salvar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Preencha todos os campos antes de salvar.", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+            } else if (SalvarAlterar.equals("alterar")) {
+                alterar();
+            } else if (SalvarAlterar.equals("cancelar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            } else if (SalvarAlterar.equals("limpar")) {
+                JOptionPane.showMessageDialog(this, "Escolha entre 'Alterar' e 'Novo' para realizar essa ação.", "Atenção", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "É preciso escolher entre 'Alterar' e 'Novo' para salvar os dados.", "Atenção", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_salActionPerformed
 
@@ -474,7 +490,7 @@ public class produto extends javax.swing.JInternalFrame {
             modelProduto = controllerProduto.getProdutoController(codigoProd);
             cod.setText(String.valueOf(modelProduto.getIdProduto()));
             nome.setText(modelProduto.getProdNome());
-            fornecedor.setText(modelProduto.getProdNomeFornec());            
+            fornecedor.setText(modelProduto.getProdNomeFornec());
             cate.setSelectedItem(modelProduto.getProdCategoria());
             quant.setText(String.valueOf(modelProduto.getProdQuantidade()));
             tama.setText(modelProduto.getProdTamanho());
@@ -499,6 +515,7 @@ public class produto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_excActionPerformed
 
     private void limActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limActionPerformed
+        SalvarAlterar = "limpar";
         limpar();
     }//GEN-LAST:event_limActionPerformed
 
@@ -510,6 +527,7 @@ public class produto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_pesqKeyReleased
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        SalvarAlterar = "cancelar";
         campos(false);
         limpar();
     }//GEN-LAST:event_cancelarActionPerformed
@@ -519,16 +537,12 @@ public class produto extends javax.swing.JInternalFrame {
         SalvarAlterar = "salvar";
     }//GEN-LAST:event_novoActionPerformed
 
-    private void tamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tamaActionPerformed
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
- pegarCampos();      
+        pegarCampos();
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
-pegarCampos();        // TODO add your handling code here:
+        pegarCampos();        // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseReleased
 
 
